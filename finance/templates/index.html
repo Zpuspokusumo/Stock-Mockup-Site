@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text-start">Symbol</th>
+                <th class="text-start">Name</th>
+                <th class="text-end">Shares</th>
+                <th class="text-end">Price</th>
+                <th class="text-end">TOTAL</th>
+            </tr>
+        </thead>
+       <tbody>
+
+        {% for row in porto %}
+        <tr>
+            <td> {{ row.symbol | upper}} </td>
+            <td> {{ row.name }} </td>
+            <td> {{ row.shares }} </td>
+            <td> {{ row.price | usd}} </td>
+            <td> {{ row.total | usd}} </td>
+        </tr>
+        {% endfor %}
+
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="border-0 fw-bold text-end" colspan="4">Cash</td>
+                <td class="border-0 text-end"> {{ cash | usd}} </td>
+            </tr>
+            <tr>
+                <td class="border-0 fw-bold text-end" colspan="4">TOTAL</td>
+                <td class="border-0 w-bold text-end"> {{ wealth | usd }} </td>
+            </tr>
+        </tfoot>
+    </table>
+    {% endblock %}
